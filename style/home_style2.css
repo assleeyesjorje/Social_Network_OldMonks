@@ -1,0 +1,46 @@
+body{
+    overflow-x: hidden;
+}
+
+#change-cover{
+    opacity: 0.7;
+}
+
+#change-cover:hover{
+    transition: 0.7s;
+}
+
+#select-cover{
+    background-color: #04AA6D;
+}
+
+#update-cover{
+    background-color: #04AA6D;
+}
+
+label{
+    padding: 5px;
+    display: table;
+    color: #fff;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+#cover-img{
+    height: 400px;
+    width: 100%;
+}
+
+.pb-cmnt-container {
+    margin-top: 100%;
+}
+
+.pb-cmnt-textarea {
+    resize: none;
+    padding: 20px;
+    height: 100px;
+    width: 100%;
+    border: 1px solid #f2f2f2;
+}
