@@ -17,10 +17,20 @@ include("includes/connection.php");
         $check_username_query = "select user_name from users2 where user_email='$email'";
         $run_username = mysqli_query($con, $check_username_query);
 
-        if(strlen($pass) < 9) {
-            echo "<script>alert('Password should be minimum nine characters')</script>";
-            exit();
-        }
+         //Setting Password Validation variables for strong password to reduce successful brutefoce attack
+
+         $uppercase = preg_match('@[A-Z]@', $pass);
+         $lowercase = preg_match('@[a-z]@', $pass);
+         $number    = preg_match('@[0-9]@', $pass);
+         $specialChars = preg_match('@[^\w]@', $pass);
+ 
+         //Password validation for strong password
+         if(strlen($pass) < 9 || !$uppercase || !$lowercase || !$number || !$specialChars ) {
+             echo "<script>alert('Password should be minimum nine characters, have at least one Uppercase, Lowercase, Number and Special Characters')</script>";
+             exit();
+         }
+         
+         $hashed_pass =password_hash($pass, PASSWORD_DEFAULT); //hashing the above password 
 
         $check_email = "select * from users2 where user_email='$email'";
         $run_email = mysqli_query($con, $check_email);
@@ -50,9 +60,9 @@ include("includes/connection.php");
             user_country, user_gender, user_birthday, user_image, 
             user_cover, user_reg_date, status, posts, recovery_account)
             values ('$first_name', '$last_name', '$username',
-            'Im active', '----', '$pass', '$email', '$country', 
+            'Im active', '----', '$hashed_pass', '$email', '$country', 
             '$gender', '$birthday', '$profile_pic', 'default.jpg', 
-            NOW(), '$status', '$posts', '')";
+            NOW(), '$status', '$posts', '')";//using $hashed_pass
 
            
             
