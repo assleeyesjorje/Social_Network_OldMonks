@@ -6,7 +6,7 @@
   <title>Oops! Page Not Found</title>
 	<style>
 		body {
-			background-color: #333;
+			background-color: #546;
 			color: #fff;
 			font-family: Arial, sans-serif;
 			text-align: center;
