@@ -213,8 +213,8 @@ function search_user() {
 
     if(isset($_GET['search_user_btn'])) {
         $search_query = htmlentities(($_GET['search_user']));
-        $get_user = "select * from users2 exclude Role != 'admin' and f_name like '%$search_query%' or
-        l_name like '%$search_query%' or user_name like '%$search_query%' ";
+        $get_user = "select * from users2 where Role != 'admin' and ( f_name like '%$search_query%' or
+        l_name like '%$search_query%' or user_name like '%$search_query%') ";
     }
     else {
         $get_user = "select * from users2 where Role != 'admin'";
@@ -228,8 +228,9 @@ function search_user() {
         $l_name = $row_user['l_name'];
         $username = $row_user['user_name'];
         $user_image = $row_user['user_image'];
+        $role = $row_user['Role'];
 
-        echo "
+         echo "
         
         <div class='row'>
             <div class='col-sm-3'>
@@ -246,6 +247,62 @@ function search_user() {
                         <a style='text-decoration:none; cursor:pointer; color:#3897f0;' href='user_profile.php?u_id=$user_id'>
                         <strong><h7>$f_name $l_name</h7></strong>
                         </a>
+                    
+                        
+                    </div>
+                    <div class='col-sm-3'>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4'>
+            </div>
+        </div><br><br>
+
+        ";
+    }
+}
+
+function search_user_admin() {
+    global $con;
+
+    if(isset($_GET['search_user_btn'])) {
+        $search_query = htmlentities(($_GET['search_user']));
+        $get_user = "select * from users2 where Role != 'admin' and ( f_name like '%$search_query%' or
+        l_name like '%$search_query%' or user_name like '%$search_query%') ";
+    }
+    else {
+        $get_user = "select * from users2 where Role != 'admin'";
+    }
+
+    $run_user = mysqli_query($con, $get_user);
+
+    while($row_user=mysqli_fetch_array($run_user)) {
+        $user_id = $row_user['user_id'];
+        $f_name = $row_user['f_name'];
+        $l_name = $row_user['l_name'];
+        $username = $row_user['user_name'];
+        $user_image = $row_user['user_image'];
+        $role = $row_user['Role'];
+        
+        echo "
+        
+        <div class='row'>
+            <div class='col-sm-3'>
+            </div>
+            <div class='col-sm-6'>
+                <div class='row' id='find_people'>
+                    <div class='col-sm-4'>
+                        <a href='user_profile.php?u_id=$user_id'>
+                        <img src='users/$user_image' width='150px' height='140px'
+                        title='$username' style='float:left; margin:1px;'/>
+                        </a>
+                    </div><br><br>
+                    <div class='col-sm-10' style='transform: translateX(-17px);'>
+                        <a style='text-decoration:none; cursor:pointer; color:#3897f0;' href='user_profile.php?u_id=$user_id'>
+                        <strong><h7>$f_name $l_name</h7></strong><br>
+                        </a>
+                        <a href='functions/block_users_admin.php?user_id=$user_id' style='float: right;'><button class='btn btn-danger'>Block</button></a>
+                        <a href='functions/unblock_users_admin.php?user_id=$user_id' style='float: right;'><button class='btn btn-success'>Unblock</button></a>   
                     </div>
                     <div class='col-sm-3'>
                     </div>

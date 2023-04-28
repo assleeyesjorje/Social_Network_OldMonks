@@ -57,7 +57,7 @@ if(!isset($_SESSION['user_email'])){
                     <center>
                     <form action="" class="search_form">
                         <input type="text" placeholder="Search Friend" name="search_user">
-                        <button id="sub" class="btn btn-info" type="submit" name="search_user_btn">Search</button>
+                        <button id="sub" class="btn btn-success" type="submit" name="search_user_btn">Search</button>
 
                     </form>
                     <div class="col-sm-4">

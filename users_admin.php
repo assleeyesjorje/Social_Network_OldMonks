@@ -48,20 +48,20 @@ if(!isset($_SESSION['user_email'])){
     
     <div class="row">
         <div class="col-sm-12">
-            <center><h2>Find New people</h2></center><br><br>
+            <center><h2>ALL USERS</h2></center><br><br>
             <div class="row">
                 <div class="col-sm-4">
                 </div>
                 <div class="col-sm-4">
                     <center>
                     <form action="" class="search_form">
-                        <input type="text" placeholder="Search Friend" name="search_user">
-                        <button id="sub" class="btn btn-info" type="submit" name="search_user_btn">Search</button>
+                        <input type="text" placeholder="Search Any User" name="search_user">
+                        <button id="sub" class="btn btn-success" type="submit" name="search_user_btn">Search</button>
 
                     </form>
                     <div class="col-sm-4">
                     </div><br><br>
-                    <?php search_user(); ?>
+                    <?php search_user_admin(); ?>
                     </center>
                 </div>
             </div>
